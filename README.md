@@ -1,6 +1,6 @@
 # Au lecteur (1 poème)
  - AU LECTEUR 
-#I Spleen et Idéal (77 poèmes)
+# I Spleen et Idéal (77 poèmes)
  - BÉNÉDICTION 
  - L’ALBATROS 
  - ÉLÉVATION 
@@ -78,7 +78,7 @@
  - L’HÉAUTONTIMOROUMÉNOS 
  - L’IRREMÉDIABLE 
  - L’HORLOGE 
-#II Tableaux Parisiens (16 poèmes)
+# II Tableaux Parisiens (16 poèmes)
  - PAYSAGE 
  - LE SOLEIL 
  - A UNE MENDIANTE ROUSSE 
@@ -95,13 +95,13 @@
  - BRUMES ET PLUIES 
  - RÊVE PARISIEN 
  - LE CRÉPUSCULE DU MATIN 
-#III Le vin (5 poèmes)
+# III Le vin (5 poèmes)
  - L’AME DU VIN 
  - LE VIN DES CHIFFONNIERS 
  - LE VIN DE L’ASSASSIN 
  - LE VIN DU SOLITAIRE 
  - LE VIN DES AMANTS 
-#IV Fleurs du Mal (11 poèmes)
+# IV Fleurs du Mal (11 poèmes)
  - LA DESTRUCTION 
  - UNE MARTYRE
  - DESSIN D’UN MAÎTRE INCONNU 
@@ -113,12 +113,12 @@
  - UN VOYAGE A CYTHÈRE 
  - L’AMOUR ET LE CRANE
  - VIEUX CUL-DE-LAMPE 
-#V Révolte (4 poèmes)
+# V Révolte (4 poèmes)
  - LE RENIEMENT DE SAINT PIERRE 
  - ABEL ET CAÏN 
  - LES LITANIES DE SATAN 
  - PRIÈRE 
-#VI La Mort (6 poèmes)
+# VI La Mort (6 poèmes)
  - LA MORT DES AMANTS 
  - LA MORT DES PAUVRES 
  - LA MORT DES ARTISTES 
