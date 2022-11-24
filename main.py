@@ -11,6 +11,7 @@ for i in range(196,201,1):
             if elem.isupper() and len(pageObj.extractText())!=1:
               if any(char.isdigit() for char in elem.split(".")[0].split()):
                noms_poemes.append("λ")
+               print(elem)
               else:
                noms_poemes.append("•"+elem.split(".")[0])
 for i in range(1,202,1):
@@ -26,6 +27,12 @@ for i in range(len(liste_pre_matrice)):
     matrice_poemes.append(liste_pre_matrice[i].split("•"))
     del(matrice_poemes[i][0])
 print(matrice_poemes)
-print(re.search(r"AU LECTEUR(.*?)BÉNÉDICTION",finaltext, re.DOTALL))
-with open("infos.txt",'w') as f:
-    pass
+result=re.search(r"AU LECTEUR(.*?)BÉNÉDICTION",finaltext, re.DOTALL)
+print(result.group(0))
+with open("README.md",'w') as f:
+    f.write(f"# Au lecteur ({len(matrice_poemes[0])} poème)\n"+' - '+'\n - '.join(matrice_poemes[0])+"\n")
+    f.write(f"# Spleen et Idéal ({len(matrice_poemes[1])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[1])+"\n")
+    f.write(f"# Tableaux Parisiens ({len(matrice_poemes[2])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[2])+"\n")
+    f.write(f"# Le vin ({len(matrice_poemes[3])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[3])+"\n")
+    f.write(f"# Fleurs du Mal ({len(matrice_poemes[4])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[4])+"\n")
+    f.write(f"# Révolte ({len(matrice_poemes[5])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[5])+"\n")
