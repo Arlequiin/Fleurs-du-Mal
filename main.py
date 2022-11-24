@@ -1,4 +1,5 @@
 import PyPDF2
+import re
 pdfFileObj = open('Les Fleurs du Mal.pdf', 'rb')
 pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 print(pdfReader.numPages)
@@ -20,5 +21,11 @@ with open("output.txt",'w') as f:
     f.write(finaltext)
 a=0
 liste_pre_matrice=(''.join(noms_poemes).split("λ"))
+matrice_poemes=[]
 for i in range(len(liste_pre_matrice)):
-    matrice_poemes[i].append(liste_pre_matrice[i].split("•"))
+    matrice_poemes.append(liste_pre_matrice[i].split("•"))
+    del(matrice_poemes[i][0])
+print(matrice_poemes)
+print(re.search(r"AU LECTEUR(.*?)BÉNÉDICTION",finaltext, re.DOTALL))
+with open("infos.txt",'w') as f:
+    pass
