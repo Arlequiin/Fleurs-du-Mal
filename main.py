@@ -16,19 +16,32 @@ for i in range(196,201,1):
                noms_poemes.append("•"+elem.split(".")[0])
 for i in range(1,202,1):
     pageObj = pdfReader.getPage(i)
-    finaltext+=f"== Page {i-5} ==\n"+pageObj.extractText()
+    finaltext+=f"== Page {i-5} ==\n"+pageObj.extractText()[:-1]
 pdfFileObj.close()
 with open("output.txt",'w') as f:
-    f.write(finaltext)
+    f.write(finaltext.replace('’',"'"))
 a=0
 liste_pre_matrice=(''.join(noms_poemes).split("λ"))
 matrice_poemes=[]
 for i in range(len(liste_pre_matrice)):
-    matrice_poemes.append(liste_pre_matrice[i].split("•"))
+    matrice_poemes.append(liste_pre_matrice[i].replace('’',"'").split("•"))
     del(matrice_poemes[i][0])
-print(matrice_poemes)
-result=re.search(r"AU LECTEUR(.*?)BÉNÉDICTION",finaltext, re.DOTALL)
-print(result.group(0))
+def findpoem(poem1,n=0):
+ poem1+=' '
+ poem2=joinlist(matrice_poemes)[joinlist(matrice_poemes).index(poem1)+1]
+ result=re.findall(r"{}(.*?){}".format(poem1,poem2),finaltext, re.DOTALL)
+ print(result)
+ result=[result[n][:-len("Les fleurs du mal")][:-len(poem2)] for n in range(len(result))]
+ print(result)
+ print(poem1,poem2)
+ return result
+def joinlist(matrix):
+    out=[]
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            out.append(matrix[i][j])
+    return out
+
 with open("README.md",'w') as f:
     f.write(f"# Au lecteur ({len(matrice_poemes[0])} poème)\n"+' - '+'\n - '.join(matrice_poemes[0])+"\n")
     f.write(f"# I Spleen et Idéal ({len(matrice_poemes[1])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[1])+"\n")
@@ -37,3 +50,5 @@ with open("README.md",'w') as f:
     f.write(f"# IV Fleurs du Mal ({len(matrice_poemes[4])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[4])+"\n")
     f.write(f"# V Révolte ({len(matrice_poemes[5])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[5])+"\n")
     f.write(f"# VI La Mort ({len(matrice_poemes[6])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[6])+"\n")
+print(joinlist(matrice_poemes))
+print(findpoem("AU LECTEUR"),2)

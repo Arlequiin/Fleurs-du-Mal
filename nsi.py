@@ -1,5 +1,6 @@
-a,b = 1,10
-while a!=b:
-    a/=10
-    b/=10
-    print(a,b)
+import sys
+a=1
+while a!=0.0:
+    a=a/10
+    print(a)
+print(a<sys.float_info.epsilon)
