@@ -30,10 +30,8 @@ def findpoem(poem1,n=0):
  poem1+=' '
  poem2=joinlist(matrice_poemes)[joinlist(matrice_poemes).index(poem1)+1]
  result=re.findall(r"{}(.*?){}".format(poem1,poem2),finaltext, re.DOTALL)
- print(result)
- result=[result[n][:-len("Les fleurs du mal")][:-len(poem2)] for n in range(len(result))]
- print(result)
- print(poem1,poem2)
+ #result=[result[n] for n in range(len(result))]#[:-len("Les fleurs du mal")][:-len(poem2)]
+ print("Poème :",poem1,"\nPoème suivant :",poem2)
  return result
 def joinlist(matrix):
     out=[]
@@ -50,5 +48,4 @@ with open("README.md",'w') as f:
     f.write(f"# IV Fleurs du Mal ({len(matrice_poemes[4])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[4])+"\n")
     f.write(f"# V Révolte ({len(matrice_poemes[5])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[5])+"\n")
     f.write(f"# VI La Mort ({len(matrice_poemes[6])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[6])+"\n")
-print(joinlist(matrice_poemes))
-print(findpoem("AU LECTEUR"),2)
+print(findpoem("BÉNÉDICTION"))
