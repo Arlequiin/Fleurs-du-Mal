@@ -1,5 +1,6 @@
 import PyPDF2
 import re
+#from champs_lexicaux import *
 pdfFileObj = open('Les Fleurs du Mal.pdf', 'rb')
 pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 print(pdfReader.numPages)
