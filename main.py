@@ -1,9 +1,9 @@
 import PyPDF2
 import re
-#from champs_lexicaux import *
+import lexique
 pdfFileObj = open('Les Fleurs du Mal.pdf', 'rb')
 pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-print(pdfReader.numPages)
+#print(pdfReader.numPages)
 finaltext=''
 noms_poemes=[]
 for i in range(196,201,1):
@@ -12,7 +12,7 @@ for i in range(196,201,1):
             if elem.isupper() and len(pageObj.extractText())!=1:
               if any(char.isdigit() for char in elem.split(".")[0].split()):
                noms_poemes.append("λ")
-               print(elem)
+               #print(elem)
               else:
                noms_poemes.append("•"+elem.split(".")[0])
 for i in range(1,202,1):
@@ -58,4 +58,9 @@ with open("README.md",'w') as f:
     f.write(f"# IV Fleurs du Mal ({len(matrice_poemes[4])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[4])+"\n")
     f.write(f"# V Révolte ({len(matrice_poemes[5])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[5])+"\n")
     f.write(f"# VI La Mort ({len(matrice_poemes[6])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[6])+"\n")
-print(findpoem("L'ALBATROS"))
+
+poeme=findpoem("L'ALBATROS")
+print(poeme)
+for lists in lexique.champs_lexicaux.keys():
+    if any(word.lower() in poeme for word in lists):
+        print("Appartient au thème",lexique.champs_lexicaux[lists])

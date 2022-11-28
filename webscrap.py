@@ -1,7 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
-from main import joinlist
 import re
+def joinlist(matrix):
+    out=[]
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            out.append(matrix[i][j])
+    return out
 def getchamplexical(cl):
     URL = f"https://www.rimessolides.com/motscles.aspx?m={cl}"
     page = requests.get(URL)
@@ -11,15 +16,16 @@ def getchamplexical(cl):
     for i in range(len(results)):
         champ_lexical.append(re.findall(">(.*?)</a",str(results[i])))
     champ_lexical=joinlist(champ_lexical)
-    return champ_lexical
-with open("champs_lexicaux.py",'w') as f:
-    f.write("from webscrap import getchamplexical\n{\n")
-    f.write("    'champ_lexical_mort':getchamplexical('mort'),\n")
-    f.write("    'champ_lexical_amour':getchamplexical('amour'),\n")
-    f.write("    'champ_lexical_laideur':getchamplexical('laideur'),\n")
-    f.write("    'champ_lexical_prostitution':getchamplexical('prostitution'),\n")
-    f.write("    'champ_lexical_beaute':getchamplexical('beauté'),\n")
-    f.write("    'champ_lexical_spleen':getchamplexical('spleen'),\n")
-    f.write("    'champ_lexical_art':getchamplexical('art'),\n")
-    f.write("    'champ_lexical_religion':getchamplexical('religion'),\n}")
+    return tuple(champ_lexical)
+with open("lexique.py",'w') as f:
+    f.write("champs_lexicaux = {\n")
+    f.write(f"    {getchamplexical('mort')}:'mort',\n")
+    f.write(f"    {getchamplexical('amour')}:'amour',\n")
+    f.write(f"    {getchamplexical('laideur')}:'laideur',\n")
+    f.write(f"    {getchamplexical('prostitution')}:'prostitution',\n")
+    f.write(f"    {getchamplexical('beauté')}:'beauté',\n")
+    f.write(f"    {getchamplexical('spleen')}:'spleen',\n")
+    f.write(f"    {getchamplexical('art')}:'art',\n")
+    f.write(f"    {getchamplexical('religion')}:'religion',\n")
+    f.write("}")
 print("writing done")
