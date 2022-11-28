@@ -29,9 +29,18 @@ for i in range(len(liste_pre_matrice)):
 def findpoem(poem1,n=0):
  poem1+=' '
  poem2=joinlist(matrice_poemes)[joinlist(matrice_poemes).index(poem1)+1]
- result=re.findall(r"{}(.*?){}".format(poem1,poem2),finaltext, re.DOTALL)
- #result=[result[n] for n in range(len(result))]#[:-len("Les fleurs du mal")][:-len(poem2)]
  print("Poème :",poem1,"\nPoème suivant :",poem2)
+ with open("output.txt") as f:
+    content=f.readlines()
+ #for i in range(len(content)):
+ #   if content[i][:-1]+' ' in joinlist(matrice_poemes):
+ #       print(content[i])
+ result=''
+ i=1
+ while content[content.index(poem1[:-1]+"\n")+i][:-1]+' ' not in joinlist(matrice_poemes):
+  if '==' not in content[content.index(poem1[:-1]+"\n")+i]:
+   result+=content[content.index(poem1[:-1]+"\n")+i].replace("Les ﬂeurs du mal",'\n')
+  i+=1
  return result
 def joinlist(matrix):
     out=[]
@@ -48,4 +57,4 @@ with open("README.md",'w') as f:
     f.write(f"# IV Fleurs du Mal ({len(matrice_poemes[4])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[4])+"\n")
     f.write(f"# V Révolte ({len(matrice_poemes[5])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[5])+"\n")
     f.write(f"# VI La Mort ({len(matrice_poemes[6])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[6])+"\n")
-print(findpoem("BÉNÉDICTION"))
+print(findpoem("LES FLEURS DU MAL"))
