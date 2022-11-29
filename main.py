@@ -90,7 +90,7 @@ def getnotes(poeme):
                 result+=notes[notes.index(notes_poemes[i])+j]
     return result
 with open("table.md",'w') as f:
-    f.write('''<table style="width:100%;border:1px solid black;border-radius:10px;"><tr><th>Poème</th><th>Notes</th><th>Champ Lexical</th></tr>''')
+    f.write('''<table style="width:100%;border:1px solid black;border-radius:10px;"><tr><th>Poème</th><th>Thèmes</th><th>Notes</th></tr>''')
     for element in joinlist(matrice_poemes):
         f.write("<tr>")
         poeme=findpoem(element)
@@ -100,6 +100,8 @@ with open("table.md",'w') as f:
             if any(word.lower() in poeme for word in lists):
                 f.write(f"- {lexique.champs_lexicaux[lists]}<br>")
         f.write("</td>")
+        f.write(f"<td>{getnotes(element[:-1])}</td>")
         f.write("</tr>")
     f.write("</table>")
 print(notes_poemes)
+print(getnotes("LE MAUVAIS MOINE"))
