@@ -28,8 +28,11 @@ for i in range(len(liste_pre_matrice)):
     matrice_poemes.append(liste_pre_matrice[i].replace('’',"'").split("•"))
     del(matrice_poemes[i][0])
 def findpoem(poem1,n=0):
- poem1+=' '
- poem2=joinlist(matrice_poemes)[joinlist(matrice_poemes).index(poem1)+1]
+ #poem1+=' '
+ try:
+  poem2=joinlist(matrice_poemes)[joinlist(matrice_poemes).index(poem1)+1]
+ except:
+    poem2="---"
  print("Poème :",poem1,"\nPoème suivant :",poem2)
  with open("output.txt") as f:
     content=f.readlines()
@@ -38,10 +41,17 @@ def findpoem(poem1,n=0):
  #       print(content[i])
  result=''
  i=1
- while content[content.index(poem1[:-1]+"\n")+i][:-1]+' ' not in joinlist(matrice_poemes):
-  if '==' not in content[content.index(poem1[:-1]+"\n")+i]:
-   result+=content[content.index(poem1[:-1]+"\n")+i].replace("Les ﬂeurs du mal",'\n')
-  i+=1
+ try:
+  while content[content.index(poem1[:-1].replace("UNE MARTYR","UNE MARTYRE").replace("LE CRAN","LE CRANE")+"\n")+i][:-1]+' ' not in joinlist(matrice_poemes):
+   if '==' not in content[content.index(poem1[:-1]+"\n")+i]:
+    result+=content[content.index(poem1[:-1]+"\n")+i].replace("Les ﬂeurs du mal",'\n')
+   i+=1
+ except:
+    i=0
+    while 'Table des matières' not in content[content.index(poem1[:-1]+'\n')+i][:-1]:
+         result+=content[content.index(poem1[:-1]+"\n")+i].replace("Les ﬂeurs du mal",'\n')
+         i+=1
+         #i+=1
  return result
 def joinlist(matrix):
     out=[]
@@ -59,8 +69,37 @@ with open("README.md",'w') as f:
     f.write(f"# V Révolte ({len(matrice_poemes[5])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[5])+"\n")
     f.write(f"# VI La Mort ({len(matrice_poemes[6])} poèmes)\n"+' - '+'\n - '.join(matrice_poemes[6])+"\n")
 
-poeme=findpoem("L'ALBATROS")
-print(poeme)
-for lists in lexique.champs_lexicaux.keys():
-    if any(word.lower() in poeme for word in lists):
-        print("Appartient au thème",lexique.champs_lexicaux[lists])
+
+with open("output_notes.txt") as f:
+    notes=f.readlines()
+notes_poemes=[]
+for element in notes:
+    if any(word in element.upper() for word in joinlist(matrice_poemes)):
+        if '.' in element:
+         notes_poemes.append(element)
+        else:
+            pass
+def getnotes(poeme):
+    result=''
+    for i in range(len(notes_poemes)):
+        if notes_poemes[i].split(".")[1][1:][:-2].lower()==poeme.lower():
+            for j in range(1,10):
+                prov=notes[notes.index(notes_poemes[i])+j]
+                if prov in notes_poemes:
+                    break
+                result+=notes[notes.index(notes_poemes[i])+j]
+    return result
+with open("table.md",'w') as f:
+    f.write('''<table style="width:100%;border:1px solid black;border-radius:10px;"><tr><th>Poème</th><th>Notes</th><th>Champ Lexical</th></tr>''')
+    for element in joinlist(matrice_poemes):
+        f.write("<tr>")
+        poeme=findpoem(element)
+        f.write(f"<td>{element}</td>")
+        f.write("<td>")
+        for lists in lexique.champs_lexicaux.keys():
+            if any(word.lower() in poeme for word in lists):
+                f.write(f"- {lexique.champs_lexicaux[lists]}<br>")
+        f.write("</td>")
+        f.write("</tr>")
+    f.write("</table>")
+print(notes_poemes)
