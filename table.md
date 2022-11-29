@@ -22,7 +22,7 @@ VIII. LA MUSE VENALE
 Il interroge à nouveau sa muse. Il 
 lui demande ce qu'elle va faire pour ne 
 pas subir la pauvreté : faire la quête ou 
-</td></tr><tr><td>LA MUSE VÉNALE </td><td>- beauté<br></td><td></td></tr><tr><td>LE MAUVAIS MOINE </td><td>- art<br></td><td>L'auteur parait décrire les 
+</td></tr><tr><td>LA MUSE VÉNALE </td><td>- beauté<br>- prostitution</td><td></td></tr><tr><td>LE MAUVAIS MOINE </td><td>- art<br>- religion<br>- mort<br></td><td>L'auteur parait décrire les 
 monastères et les mettre en parallèle avec 
 l'âme. Son esprit semble bridé et austère. 
 Il regrette, d'une certaine manière, de ne 
